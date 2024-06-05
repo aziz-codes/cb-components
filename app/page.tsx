@@ -1,12 +1,7 @@
-import TaskCard from "@/components/Task";
 import React from "react";
 
 const HomePage = () => {
-  return (
-    <div className="flex justify-center items-center h-screen">
-      <TaskCard />
-    </div>
-  );
+  return <div className="flex justify-center items-center h-screen">hello</div>;
 };
 
 export default HomePage;
