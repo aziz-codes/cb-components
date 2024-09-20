@@ -1,28 +1,36 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
-const TextInputWithEmoji: React.FC = () => {
-  const inputRef = useRef<HTMLDivElement>(null);
+const TextInputWithEmoji = () => {
+  const [input, setInput] = useState(""); // State to hold the textarea input
+  const inputRef = useRef<HTMLTextAreaElement>(null); // Ref for the textarea
 
-  const handleInput = (e: React.ChangeEvent<HTMLDivElement>) => {
-    console.log(e.target.textContent);
+  // Adjust height dynamically based on scrollHeight
+  const adjustHeight = () => {
+    if (inputRef.current) {
+      inputRef.current.style.height = "34px"; // Reset the height
+      inputRef.current.style.height = `${inputRef.current.scrollHeight}px`; // Set height based on content
+    }
   };
 
+  // Call adjustHeight whenever input changes
+  useEffect(() => {
+    adjustHeight(); // Adjust height on initial load and whenever input changes
+  }, [input]);
+
   return (
-    <div className="flex justify-center items-center">
-      <div className="relative w-64">
-        <div
-          ref={inputRef}
-          contentEditable
-          className="w-full p-2 border border-gray-300 rounded-lg outline-none  " // Added text-left class
-          onInput={handleInput}
-        ></div>
-        <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-          <span role="img" aria-label="Emoji" className="text-lg">
-            😊
-          </span>
-        </div>
-      </div>
+    <div className="flex justify-between border px-2 items-center w-full max-w-md">
+      <textarea
+        placeholder="Enter a comment"
+        ref={inputRef}
+        className="resize-none overflow-hidden w-full p-2"
+        value={input}
+        onChange={(e) => setInput(e.target.value)} // Set input state on change
+        style={{ height: "34px" }} // Initial height
+      ></textarea>
+      <span role="img" aria-label="Emoji" className="text-lg ml-2">
+        😊
+      </span>
     </div>
   );
 };

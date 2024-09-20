@@ -18,10 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex gap-2">
-          <Sidebar />
+       
+        
           <div className="flex-1">{children}</div>
-        </div>
+         
       </body>
     </html>
   );
