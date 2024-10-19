@@ -1,9 +1,10 @@
-import TextInputWithEmoji from "@/components/input";
+import EditableContainer from "@/components/editable-container";
+ 
 import React from "react";
 
 const HomePage = () => {
-  return <div className="flex justify-center items-center h-screen">
-    <TextInputWithEmoji />
+  return <div className="flex justify-center items-center h-screen ">
+    <EditableContainer />
   </div>;
 };
 
